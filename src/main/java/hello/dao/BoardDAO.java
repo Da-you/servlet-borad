@@ -6,7 +6,9 @@ import hello.util.DBManager;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 // 게시글 테이블을 엑세스 = 직접 DB에 엑세스
@@ -36,12 +38,11 @@ public class BoardDAO {
 
             while (rs.next()) {
                 BoardVO board = new BoardVO();
-
                 board.setNum(rs.getInt("num"));
                 board.setTitle(rs.getString("title"));
                 board.setContent(rs.getString("content"));
                 board.setReadCount(rs.getInt("readCount"));
-                board.setCreateDate(rs.getTimestamp("createdAt").toLocalDateTime());
+                board.setCreateDate(rs.getTimestamp("createDate"));
 
                 list.add(board);
             }

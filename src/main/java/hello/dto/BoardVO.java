@@ -1,13 +1,16 @@
 package hello.dto;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.Date;
+
 //
 public class BoardVO {
     private int num;
     private String title;
     private String content;
     private int readCount;
-    private LocalDateTime createDate;
+    private Timestamp createDate;
 
     public int getNum() {
         return num;
@@ -41,11 +44,11 @@ public class BoardVO {
         this.readCount = readCount;
     }
 
-    public LocalDateTime getCreateDate() {
+    public Timestamp getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(LocalDateTime createDate) {
+    public void setCreateDate(Timestamp createDate) {
         this.createDate = createDate;
     }
 }

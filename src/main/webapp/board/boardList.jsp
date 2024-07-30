@@ -5,9 +5,9 @@
   Time: 오후 5:55
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java"%>
-<%@ taglib prefix="c" uri="jakarta.tags.core"%>
-<%@ taglib prefix="fmt" uri="jakarta.tags.fmt"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <html>
 <head>
     <title>게시판</title>
@@ -18,12 +18,12 @@
     <table class="list">
         <tr>
             <td colspan="5" style="border: white; text-align: right">
-                <a href="BoardServlet?command=board_write_form"> 게시글 등록</a>
+                <a href="BoardServlet?command=board_post_form"> 게시글 등록</a>
             </td>
         </tr>
         <tr>
-            <th>번호</th>
         </tr>
+        <th>번호</th>
         <th>제목</th>
         <th>작성일</th>
         <th>조회</th>

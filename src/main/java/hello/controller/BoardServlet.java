@@ -2,6 +2,7 @@ package hello.controller;
 
 import hello.HelloServlet;
 import hello.controller.action.Action;
+import hello.controller.action.BoardPostFormAction;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;

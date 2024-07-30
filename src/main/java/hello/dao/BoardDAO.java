@@ -3,10 +3,7 @@ package hello.dao;
 import hello.dto.BoardVO;
 import hello.util.DBManager;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.sql.Timestamp;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -52,5 +49,28 @@ public class BoardDAO {
             DBManager.close(conn, stmt, rs);
         }
         return list;
+    }
+    // 게시글 작성
+    public void insertBoard(BoardVO boardVO){
+        String sql = "insert into board("
+                +"title, content)"
+                + "values(?,?)";
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+
+        try {
+            conn = DBManager.getConnection();
+            pstmt = conn.prepareStatement(sql);
+
+            pstmt.setString(1, boardVO.getTitle());
+            pstmt.setString(2, boardVO.getContent());
+
+            pstmt.executeUpdate();
+            System.out.println("Insert Board Success");
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally {
+            DBManager.close(conn, pstmt);
+        }
     }
 }

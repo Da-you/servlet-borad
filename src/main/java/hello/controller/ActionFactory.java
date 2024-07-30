@@ -1,9 +1,6 @@
 package hello.controller;
 
-import hello.controller.action.Action;
-import hello.controller.action.BoardListAction;
-import hello.controller.action.BoardPostAction;
-import hello.controller.action.BoardPostFormAction;
+import hello.controller.action.*;
 
 public class ActionFactory {
     private static ActionFactory instance = new ActionFactory();
@@ -25,6 +22,14 @@ public class ActionFactory {
             action = new BoardPostFormAction();
         } else if (command.equals("board_post")) {
             action = new BoardPostAction();
+        } else if (command.equals("board_view")) {
+            action = new BoardViewAction();
+        } else if (command.equals("board_update_form")) {
+            action = new BoardUpdateFormAction();
+        } else if (command.equals("board_update")) {
+            action = new BoardUpdateAction();
+        } else if (command.equals("board_delete")) {
+            action = new BoardDeleteAction();
         }
         return action;
     }

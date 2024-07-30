@@ -1,10 +1,9 @@
 package hello.controller;
 
-import hello.HelloServlet;
 import hello.controller.action.Action;
-import hello.controller.action.BoardPostFormAction;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -12,7 +11,7 @@ import java.io.IOException;
 
 // TODO: url 패턴과 매칭 시켜주는 어노테이션
 @WebServlet(urlPatterns = "/BoardServlet")
-public class BoardServlet extends HelloServlet {
+public class BoardServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     @Override

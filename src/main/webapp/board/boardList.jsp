@@ -23,15 +23,12 @@
         </tr>
         <tr>
         </tr>
-        <th>번호</th>
-        <th>제목</th>
-        <th>작성일</th>
-        <th>조회</th>
+        <th>번호</th><th>제목</th><th>작성일</th><th>조회수</th>
         <c:forEach var="board" items="${boardList }">
             <tr class="record">
                 <td>${board.num}</td>
                 <td>
-                    <a href="BoardServlet?command=board_view&num=&{board.num}">
+                    <a href="BoardServlet?command=board_view&num=${board.num}">
                             ${board.title }
                     </a>
                 </td>

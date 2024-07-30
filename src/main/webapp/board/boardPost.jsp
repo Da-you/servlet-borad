@@ -9,7 +9,6 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <html>
 <head>
-<meta charset="UTF-8">
     <title>게시글 작성</title>
 </head>
 <body>
@@ -30,7 +29,7 @@
         <br><br>
         <input type="submit" value="등록">
         <br><br>
-        <input tpye="button" value="목록" onclick="location.href ='BoardServlet?command=board_list'">
+        <input type="button" value="목록" onclick="location.href ='BoardServlet?command=board_list'">
     </form>
 </div>
 </body>

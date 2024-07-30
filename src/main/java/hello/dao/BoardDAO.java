@@ -19,6 +19,7 @@ public class BoardDAO {
     public static BoardDAO getInstance() {
         return instance;
     }
+
     // 전체 게시글 조회
     public List<BoardVO> selectAllBoards() {
         String sql = "select * from board order by num desc";
@@ -37,7 +38,6 @@ public class BoardDAO {
                 BoardVO board = new BoardVO();
                 board.setNum(rs.getInt("num"));
                 board.setTitle(rs.getString("title"));
-                board.setContent(rs.getString("content"));
                 board.setReadCount(rs.getInt("readCount"));
                 board.setCreateDate(rs.getTimestamp("createDate"));
 
@@ -50,10 +50,11 @@ public class BoardDAO {
         }
         return list;
     }
+
     // 게시글 작성
-    public void insertBoard(BoardVO boardVO){
+    public void insertBoard(BoardVO boardVO) {
         String sql = "insert into board("
-                +"title, content)"
+                + "title, content)"
                 + "values(?,?)";
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -67,10 +68,107 @@ public class BoardDAO {
 
             pstmt.executeUpdate();
             System.out.println("Insert Board Success");
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             DBManager.close(conn, pstmt);
         }
+    }
+
+    // 게시글 조회수 증가
+    public void updateReadCount(String num) {
+        String sql = "update board set readcount = readcount +1 where num =?";
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+
+        try {
+            conn = DBManager.getConnection();
+            pstmt = conn.prepareStatement(sql);
+
+            pstmt.setString(1, num);
+
+
+            pstmt.executeUpdate();
+            System.out.println("Insert Board Success");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.close(conn, pstmt);
+        }
+    }
+
+    // 게시글 단건 조회
+    public BoardVO selectDetailBoardByNum(String num) {
+        String sql = "select * from board where num =?";
+
+        BoardVO board = null;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = DBManager.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, num);
+
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                board = new BoardVO();
+                board.setNum(rs.getInt("num"));
+                board.setTitle(rs.getString("title"));
+                board.setContent(rs.getString("content"));
+                board.setReadCount(rs.getInt("readCount"));
+                board.setCreateDate(rs.getTimestamp("createDate"));
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.close(conn, pstmt, rs);
+        }
+        return board;
+    }
+
+    // 게시글 수정
+    public void updateBoard(BoardVO boardVO) {
+        String sql = "update board set title =?, content =? where num =?";
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+
+        try {
+            conn = DBManager.getConnection();
+            pstmt = conn.prepareStatement(sql);
+
+            pstmt.setString(1, boardVO.getTitle());
+            pstmt.setString(2, boardVO.getContent());
+            pstmt.setInt(3, boardVO.getNum());
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.close(conn, pstmt);
+        }
+    }
+
+    // 게시글 삭제
+    public void deleteBoard(String num) {
+        String sql = "delete from board where num =?";
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+
+        try {
+            conn = DBManager.getConnection();
+            pstmt = conn.prepareStatement(sql);
+
+            pstmt.setString(1, num);
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.close(conn, pstmt);
+        }
+
     }
 }

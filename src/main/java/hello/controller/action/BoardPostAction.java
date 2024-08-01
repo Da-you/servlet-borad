@@ -16,7 +16,6 @@ public class BoardPostAction implements Action {
 
         vo.setTitle(req.getParameter("title"));
         vo.setContent(req.getParameter("content"));
-        vo.setCreateDate(new Timestamp(System.currentTimeMillis()));
 
         BoardDAO dao = BoardDAO.getInstance();
         dao.insertBoard(vo);

@@ -54,10 +54,10 @@ public class BoardDAO {
     // 게시글 작성
     public void insertBoard(BoardVO boardVO) {
         String sql = "insert into board("
-                + "title, content)"
-                + "values(?,?)";
-        Connection conn = null;
-        PreparedStatement pstmt = null;
+                + "title, content,createDate,readCount)"
+                + "values(?,?,now(),0)";
+        Connection conn = null;  // Todo
+        PreparedStatement pstmt = null; // Todo
 
         try {
             conn = DBManager.getConnection();

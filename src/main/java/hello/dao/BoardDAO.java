@@ -25,13 +25,13 @@ public class BoardDAO {
         String sql = "select * from board order by num desc";
 
         List<BoardVO> list = new ArrayList<BoardVO>();
-        Connection conn = null;
-        Statement stmt = null;
-        ResultSet rs = null;
+        Connection conn = null; // Todo : db연결 DriverManager.getConnection으로 얻음
+        Statement stmt = null; // Todo: 질의, 갱신 실행, connection.createStatement로 얻음, 실제 sql이 실행되기 위해서는 해당 객체가 생성 되어야 한다.
+        ResultSet rs = null; // Todo: 결과물 statement.executeQuery로 얻음
 
         try {
-            conn = DBManager.getConnection();
-            stmt = conn.createStatement();
+            conn = DBManager.getConnection(); // db 연결을 실행
+            stmt = conn.createStatement(); // 표준 sql 실행을 위해 해당 객체를 얻는다.
             rs = stmt.executeQuery(sql);
 
             while (rs.next()) {

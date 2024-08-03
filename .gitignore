@@ -162,6 +162,8 @@ gradle-wrapper.jar
 # Avoid ignore Gradle wrappper properties
 gradle-wrapper.properties
 
+.smarttomcat/
+
 # Cache of project
 .gradletasknamecache
 

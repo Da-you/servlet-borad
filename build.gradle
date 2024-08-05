@@ -14,17 +14,21 @@ repositories {
 dependencies {
     //서블릿
     implementation 'jakarta.servlet:jakarta.servlet-api:6.0.0'
-
+    // JDBC
     implementation group: 'com.mysql', name: 'mysql-connector-j', version: '8.0.33'
-
+    // JSP
     providedCompile 'jakarta.servlet.jsp:jakarta.servlet.jsp-api:3.1.0'
     implementation 'jakarta.el:jakarta.el-api:5.0.0'
     implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.0'
     implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.1'
-//    compileOnly 'org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.1'
-//    compileOnly 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.0'
+    // DBCP
+    implementation group: 'hikari-cp', name: 'hikari-cp', version: '3.1.0'
+
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
+    // AssertJ
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.26.3'
+
 }
 
 test {

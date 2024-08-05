@@ -30,6 +30,14 @@ public class ActionFactory {
             action = new BoardUpdateAction();
         } else if (command.equals("board_delete")) {
             action = new BoardDeleteAction();
+        } else if (command.equals("user_signup_form")) {
+            action = new UserSignUpFormAction();
+        } else if (command.equals("user_signup")) {
+            action = new UserSignUpAction();
+        } else if (command.equals("user_login_form")) {
+            action = new UserLoginFormAction();
+        } else if (command.equals("user_login")) {
+            action = new UserLoginAction();
         }
         return action;
     }

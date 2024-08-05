@@ -34,6 +34,10 @@ public class ActionFactory {
             action = new UserSignUpFormAction();
         } else if (command.equals("user_signup")) {
             action = new UserSignUpAction();
+        } else if (command.equals("user_login_form")) {
+            action = new UserLoginFormAction();
+        } else if (command.equals("user_login")) {
+            action = new UserLoginAction();
         }
         return action;
     }

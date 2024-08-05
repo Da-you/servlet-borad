@@ -35,4 +35,14 @@ public class UserVO {
     public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
+
+    @Override
+    public String toString() {
+        return "UserVO{" +
+                "serialId=" + serialId +
+                ", userId='" + userId + '\'' +
+                ", password='" + password + '\'' +
+                ", createdAt=" + createdAt +
+                '}';
+    }
 }

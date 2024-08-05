@@ -22,6 +22,16 @@
             </td>
         </tr>
         <tr>
+            <td colspan="5" style="border: white; text-align: right">
+                <a href="UserServlet?command=user_signup_form"> 회원 가입</a>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5" style="border: white; text-align: right">
+                <a href="UserServlet?command=user_login_form"> 로그인</a>
+            </td>
+        </tr>
+        <tr>
         </tr>
         <th>번호</th><th>제목</th><th>작성일</th><th>조회수</th>
         <c:forEach var="board" items="${boardList }">

@@ -22,7 +22,7 @@ dependencies {
     implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.0'
     implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.1'
     // DBCP
-    implementation group: 'hikari-cp', name: 'hikari-cp', version: '3.1.0'
+    implementation 'com.zaxxer:HikariCP:5.0.1'
 
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
@@ -36,7 +36,7 @@ test {
 }
 
 
-//war 풀기, 인텔리J 무료버전 필요
+//war 풀기, IntelliJ 무료버전 필요
 task explodedWar(type: Copy) {
     into "$buildDir/exploded"
     with war

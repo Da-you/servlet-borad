@@ -1,17 +1,16 @@
 package hello.dao;
 
 import hello.dto.BoardVO;
-import hello.util.DBManager;
+import hello.util.DBCPUtils;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 // 게시글 테이블을 엑세스 = 직접 DB에 엑세스
 public class BoardDAO {
 
-    public BoardDAO() {
+    private BoardDAO() {
     }
 
     private static BoardDAO instance = new BoardDAO(); // 싱글톤
@@ -30,7 +29,8 @@ public class BoardDAO {
         ResultSet rs = null; // Todo: 결과물 statement.executeQuery로 얻음
 
         try {
-            conn = DBManager.getConnection(); // db 연결을 실행
+            conn = DBCPUtils.getConnection(); // db 연결을 실행
+            System.out.println("hikari={} " + conn.getClass());
             stmt = conn.createStatement(); // 표준 sql 실행을 위해 해당 객체를 얻는다.
             rs = stmt.executeQuery(sql);
 
@@ -46,7 +46,7 @@ public class BoardDAO {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            DBManager.close(conn, stmt, rs);
+            DBCPUtils.close(conn, stmt, rs);
         }
         return list;
     }
@@ -60,7 +60,7 @@ public class BoardDAO {
         PreparedStatement pstmt = null; // Todo
 
         try {
-            conn = DBManager.getConnection();
+            conn = DBCPUtils.getConnection();
             pstmt = conn.prepareStatement(sql);
 
             pstmt.setString(1, boardVO.getTitle());
@@ -71,7 +71,7 @@ public class BoardDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            DBManager.close(conn, pstmt);
+            DBCPUtils.close(conn, pstmt);
         }
     }
 
@@ -82,7 +82,7 @@ public class BoardDAO {
         PreparedStatement pstmt = null;
 
         try {
-            conn = DBManager.getConnection();
+            conn = DBCPUtils.getConnection();
             pstmt = conn.prepareStatement(sql);
 
             pstmt.setString(1, num);
@@ -93,7 +93,7 @@ public class BoardDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            DBManager.close(conn, pstmt);
+            DBCPUtils.close(conn, pstmt);
         }
     }
 
@@ -107,7 +107,7 @@ public class BoardDAO {
         ResultSet rs = null;
 
         try {
-            conn = DBManager.getConnection();
+            conn = DBCPUtils.getConnection();
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, num);
 
@@ -125,7 +125,7 @@ public class BoardDAO {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            DBManager.close(conn, pstmt, rs);
+            DBCPUtils.close(conn, pstmt, rs);
         }
         return board;
     }
@@ -138,7 +138,7 @@ public class BoardDAO {
         PreparedStatement pstmt = null;
 
         try {
-            conn = DBManager.getConnection();
+            conn = DBCPUtils.getConnection();
             pstmt = conn.prepareStatement(sql);
 
             pstmt.setString(1, boardVO.getTitle());
@@ -148,7 +148,7 @@ public class BoardDAO {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            DBManager.close(conn, pstmt);
+            DBCPUtils.close(conn, pstmt);
         }
     }
 
@@ -159,7 +159,7 @@ public class BoardDAO {
         PreparedStatement pstmt = null;
 
         try {
-            conn = DBManager.getConnection();
+            conn = DBCPUtils.getConnection();
             pstmt = conn.prepareStatement(sql);
 
             pstmt.setString(1, num);
@@ -167,7 +167,7 @@ public class BoardDAO {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            DBManager.close(conn, pstmt);
+            DBCPUtils.close(conn, pstmt);
         }
 
     }

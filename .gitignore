@@ -177,4 +177,6 @@ gradle-wrapper.properties
 # Java heap dump
 *.hprof
 
+hello/util/ConnectionConst.java
+
 # End of https://www.toptal.com/developers/gitignore/api/macos,intellij+all,gradle,java

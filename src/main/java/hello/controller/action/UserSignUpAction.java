@@ -17,6 +17,9 @@ public class UserSignUpAction implements Action {
         vo.setPassword(req.getParameter("password"));
 
         UserDAO dao = UserDAO.getInstance();
+        if(!dao.duplicateUserIdCheck(req.getParameter("userId"))){
+            throw new IllegalArgumentException("중복된 아이디 입니다.");
+        }
         dao.insertUser(vo);
 
         new BoardListAction().execute(req, resp);

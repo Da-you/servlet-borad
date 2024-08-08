@@ -22,7 +22,7 @@
             </tr>
             <tr>
                 <th>비밀번호</th>
-                <td><input type="text" size="70" name="password"></td>
+                <td><input type="password" size="70" name="password"></td>
             </tr>
         </table>
         <br><br>

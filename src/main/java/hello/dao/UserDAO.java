@@ -1,7 +1,7 @@
 package hello.dao;
 
 import hello.dto.UserVO;
-import hello.util.DBManager;
+import hello.util.DBCPUtils;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,7 +27,7 @@ public class UserDAO {
         PreparedStatement pstmt = null;
 
         try {
-            conn = DBManager.getConnection();
+            conn = DBCPUtils.getConnection();
             pstmt = conn.prepareStatement(sql);
 
             pstmt.setString(1, userVO.getUserId());
@@ -37,7 +37,7 @@ public class UserDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            DBManager.close(conn, pstmt);
+            DBCPUtils.close(conn, pstmt);
         }
     }
 
@@ -51,7 +51,7 @@ public class UserDAO {
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         try {
-            conn = DBManager.getConnection();
+            conn = DBCPUtils.getConnection();
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, userId);
             rs = pstmt.executeQuery();
@@ -67,7 +67,7 @@ public class UserDAO {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            DBManager.close(conn, pstmt, rs);
+            DBCPUtils.close(conn, pstmt, rs);
         }
         return result;
     }
@@ -80,20 +80,44 @@ public class UserDAO {
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         try {
-            conn = DBManager.getConnection();
+            conn = DBCPUtils.getConnection();
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, userId);
             rs = pstmt.executeQuery();
             if (rs.next()) {
                 userVO = new UserVO();
+                userVO.setSerialId(rs.getInt("serialId"));
                 userVO.setUserId(rs.getString("userId"));
-                userVO.setPassword(rs.getString("password"));
             }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            DBManager.close(conn, pstmt, rs);
+            DBCPUtils.close(conn, pstmt, rs);
         }
         return userVO;
+    }
+    // 중복 userId 확인
+    public boolean duplicateUserIdCheck(String userId) {
+        boolean result = false;
+        String sql = "select * from users where userId = ?";
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try {
+            conn = DBCPUtils.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, userId);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                result = false;
+            } else {
+                result = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBCPUtils.close(conn, pstmt, rs);
+        }
+        return result;
     }
 }

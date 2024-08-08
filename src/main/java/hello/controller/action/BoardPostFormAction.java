@@ -11,6 +11,10 @@ public class BoardPostFormAction implements Action {
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if (req.getSession().getAttribute("loginUser") == null) {
+            resp.sendRedirect( "/user/userLogin.jsp");
+            return;
+        }
         String url = "/board/boardPost.jsp";
 
         RequestDispatcher dispatcher = req.getRequestDispatcher(url);

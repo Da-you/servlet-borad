@@ -8,6 +8,11 @@ public class UserVO {
     private String password;
     private Timestamp createdAt;
 
+
+    public void setSerialId(int serialId) {
+        this.serialId = serialId;
+    }
+
     public int getSerialId() {
         return serialId;
     }

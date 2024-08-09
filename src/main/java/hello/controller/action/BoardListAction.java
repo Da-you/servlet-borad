@@ -14,6 +14,7 @@ public class BoardListAction implements Action {
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("전체 게시글 호출");
         String url = "/board/boardList.jsp";
 
         BoardDAO dao = BoardDAO.getInstance();

@@ -35,6 +35,7 @@
         </tr>
         <th>번호</th>
         <th>제목</th>
+        <th>작성자</th>
         <th>작성일</th>
         <th>조회수</th>
         <c:forEach var="board" items="${boardList }">
@@ -45,6 +46,7 @@
                             ${board.title }
                     </a>
                 </td>
+                <td>${board.userId}</td>
                 <td><fmt:formatDate value="${board.createDate }"/></td>
                 <td>${board.readCount}</td>
             </tr>

@@ -25,6 +25,9 @@
             <th>제목</th>
             <td colspan="3">${board.title}</td>
         </tr>
+        <tr>
+            <th>작성자</th><td>${board.userId}</td>
+        </tr>
 
         <tr>
             <th>내용</th>

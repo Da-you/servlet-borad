@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 //
 public class BoardVO {
     private int num;
+    private String userId;
     private String title;
     private String content;
     private int readCount;
@@ -48,5 +49,13 @@ public class BoardVO {
 
     public void setCreateDate(Timestamp createDate) {
         this.createDate = createDate;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }

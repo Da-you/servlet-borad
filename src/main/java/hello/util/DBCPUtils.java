@@ -16,17 +16,12 @@ public class DBCPUtils {
     private static HikariDataSource hikariDs;
 
     static {
-        try {
-            hikariDs.close();
-            System.out.println("커넥션 풀 초기화");
-        }catch (Exception e){
-            e.printStackTrace();
-        }
         config.setDriverClassName(DRIVER);
         config.setJdbcUrl(URL);
         config.setUsername(USER);
         config.setPassword(PASSWORD);
         config.setPoolName("MY-Pool");
+        config.setMinimumIdle(4);
         config.setMaximumPoolSize(10);
         config.setConnectionTimeout(3000);
         System.out.println("hikari 커넥션 풀 생성");
@@ -39,9 +34,16 @@ public class DBCPUtils {
     // select를 수행한후 리소스 해제
     public static void close(Connection conn, Statement stmt, ResultSet rs) {
         try {
-            rs.close();
-            stmt.close();
-            conn.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+            if (conn != null) {
+                System.out.println("커넥션 반환");
+                conn.close();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -50,8 +52,13 @@ public class DBCPUtils {
     // DML(insert, update, delete) 수행후 리소스 해제
     public static void close(Connection conn, Statement stmt) {
         try {
-            stmt.close();
-            conn.close();
+            if (stmt != null) {
+                stmt.close();
+            }
+            if (conn != null) {
+                System.out.println("커넥션 반환");
+                conn.close();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

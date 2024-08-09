@@ -38,6 +38,7 @@ public class BoardDAO {
                 BoardVO board = new BoardVO();
                 board.setNum(rs.getInt("num"));
                 board.setTitle(rs.getString("title"));
+                board.setUserId(rs.getString("userId"));
                 board.setReadCount(rs.getInt("readCount"));
                 board.setCreateDate(rs.getTimestamp("createDate"));
 
@@ -46,6 +47,7 @@ public class BoardDAO {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
+            System.out.println("반환 메서드 호출");
             DBCPUtils.close(conn, stmt, rs);
         }
         return list;
@@ -54,8 +56,8 @@ public class BoardDAO {
     // 게시글 작성
     public void insertBoard(BoardVO boardVO) {
         String sql = "insert into board("
-                + "title, content,createDate,readCount)"
-                + "values(?,?,now(),0)";
+                + "title, content,createDate,readCount,userId)"
+                + "values(?,?,now(),0,?)";
         Connection conn = null;  // Todo
         PreparedStatement pstmt = null; // Todo
 
@@ -65,12 +67,14 @@ public class BoardDAO {
 
             pstmt.setString(1, boardVO.getTitle());
             pstmt.setString(2, boardVO.getContent());
+            pstmt.setString(3, boardVO.getUserId());
 
             pstmt.executeUpdate();
             System.out.println("Insert Board Success");
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
+            System.out.println("반환 메서드 호출");
             DBCPUtils.close(conn, pstmt);
         }
     }
@@ -93,6 +97,7 @@ public class BoardDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
+            System.out.println("반환 메서드 호출");
             DBCPUtils.close(conn, pstmt);
         }
     }
@@ -118,6 +123,7 @@ public class BoardDAO {
                 board.setNum(rs.getInt("num"));
                 board.setTitle(rs.getString("title"));
                 board.setContent(rs.getString("content"));
+                board.setUserId(rs.getString("userId"));
                 board.setReadCount(rs.getInt("readCount"));
                 board.setCreateDate(rs.getTimestamp("createDate"));
 
@@ -125,6 +131,7 @@ public class BoardDAO {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
+            System.out.println("반환 메서드 호출");
             DBCPUtils.close(conn, pstmt, rs);
         }
         return board;
@@ -148,6 +155,7 @@ public class BoardDAO {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
+            System.out.println("반환 메서드 호출");
             DBCPUtils.close(conn, pstmt);
         }
     }
@@ -167,6 +175,7 @@ public class BoardDAO {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
+            System.out.println("반환 메서드 호출");
             DBCPUtils.close(conn, pstmt);
         }
 
